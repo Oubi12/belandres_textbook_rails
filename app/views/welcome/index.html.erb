@@ -22,7 +22,7 @@
     }
 
     p {
-        color: lightgray;
+        color: darkred;
         margin-top: 20px;
         font-size: 40px;
     }
@@ -35,13 +35,12 @@
         height: 100%;
     }
 </style>
-</head>
+
 <body>
 <div class="container">
   <h1>SOME MYSTICAL THINGS</h1>
   <p>Enter at your own risk</p>
 </div>
   <div>
-    <a><%= link_to 'Explore Now', home_path %></a>
+    <%= link_to 'Create New Post', home_path, class: 'btn btn-dark' %>
   </div>
-</body>

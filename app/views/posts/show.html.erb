@@ -1,0 +1,15 @@
+<h1>Show Post ID: <%= @post.id %></h1>
+
+
+<ul>
+  <li><%= @post.title %></li>
+  <li><%= @post.content %></li>
+  <li><%= @post.created_at %></li>
+  <li><%= @post.updated_at %></li>
+</ul>
+
+    <%= link_to 'Edit', edit_post_path, class: 'btn btn-dark' %>
+    <%= link_to 'Back', posts_path, class: 'btn btn-dark' %>
+
+
+
