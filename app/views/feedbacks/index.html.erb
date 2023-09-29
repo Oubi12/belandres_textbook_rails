@@ -1,0 +1,26 @@
+
+<h1>Feedback List</h1>
+<%= link_to 'new', new_feedback_path, class: 'btn btn-outline-dark' %>
+
+ <table class="table-bordered">
+     <thead>
+     <td>NAME</td>
+     <td>EMAIL</td>
+     <td>MESSAGE</td>
+     <td>CREATED</td>
+     <td>UPDATED</td>
+     <td>ACTIONS</td>
+   </thead>
+     <% @feedbacks.each do |feedback| %>
+         <tr>
+         <td><%= feedback.name %></td>
+         <td><%= feedback.email %></td>
+         <td><%= feedback.message %></td>
+         <td><%= feedback.created_at %></td>
+         <td><%= feedback.updated_at %></td>
+           <td><%= link_to 'Edit', edit_feedback_path(feedback), class: 'btn btn-outline-success' %>
+             <%= link_to 'Show', feedback_path(feedback), class: 'btn btn-outline-primary' %>
+             <%= button_to 'Delete', feedback_path(feedback), method: :delete, class: 'btn btn-outline-danger' %></td>
+       </tr>
+       <% end %>
+   </table>
