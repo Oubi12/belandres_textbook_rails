@@ -1,85 +1,85 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>KodaCamp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-    <style>
-        body {
-            font-size: 28px;
-        }
+<head>
+  <title>KodaCamp</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  <style>
+      body {
+          font-size: 28px;
+      }
 
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: white;
-            position: -webkit-sticky;
-            position: sticky;
-            top: 0;
-        }
+      ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: white;
+          position: -webkit-sticky;
+          position: sticky;
+          top: 0;
+      }
 
-        li {
-            float: left;
-        }
+      li {
+          float: left;
+      }
 
-        li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
+      li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+      }
 
-        li a:hover {
-            background-color: gray;
-        }
-   </style>
+      li a:hover {
+          background-color: gray;
+      }
+  </style>
 
-  </head>
-  <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">KODACAMP</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <%= link_to 'Home', home_path, class: "nav-link #{'active' if controller_name == 'welcome' && action_name == 'home' }", 'aria-current': 'page' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Feedback', feedbacks_path, class: "nav-link #{'active' if controller_name == 'feedbacks' && action_name == 'contact' }", 'aria-current': 'page' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'About', about_path, class: "nav-link #{'active' if controller_name == 'welcome' && action_name == 'about' }", 'aria-current': 'page' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Posts', posts_path, class: "nav-link #{'active' if controller_name == 'posts' && action_name == 'index'}", 'aria-current': 'page' %>
-          </li>
-        </ul>
-      </div>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <%= link_to "KODACAMP", root_path, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <%= link_to 'Home', home_path, class: "nav-link #{'active' if controller_name == 'welcome' && action_name == 'home' }", 'aria-current': 'page' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Contact', contacts_path, class: "nav-link #{'active' if controller_name == 'welcome' && action_name == 'contacts'}", 'aria-current': 'page' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'About', about_path, class: "nav-link #{'active' if controller_name == 'welcome' && action_name == 'about' }", 'aria-current': 'page' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Posts', posts_path, class: "nav-link #{'active' if controller_name == 'posts' && action_name == 'index'}", 'aria-current': 'page' %>
+        </li>
+      </ul>
     </div>
-  </nav>
-  <div class="container">
-    <% if flash[:notice] %>
-      <div class="alert alert-success" role="alert">
-        <p class="notice"><%= notice %></p>
-      </div>
-    <% end %>
-    <% if flash[:alert] %>
-      <div class="alert alert-danger" role="alert">
-        <p class="notice"><%= alert %></p>
-      </div>
-    <% end %>
   </div>
-    <%= yield %>
-  </body>
+</nav>
+<div class="container">
+  <% if flash[:notice] %>
+    <div class="alert alert-success" role="alert">
+      <p class="notice"><%= notice %></p>
+    </div>
+  <% end %>
+  <% if flash[:alert] %>
+    <div class="alert alert-danger" role="alert">
+      <p class="notice"><%= alert %></p>
+    </div>
+  <% end %>
+</div>
+<%= yield %>
+</body>
 </html>
 
 

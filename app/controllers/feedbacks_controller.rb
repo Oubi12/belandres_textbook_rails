@@ -4,8 +4,9 @@ class FeedbacksController < ApplicationController
   end
 
   def new
-      @feedback = Feedback.new
+    @feedback = Feedback.new
   end
+
   def create
     @feedback = Feedback.new(feedback_params)
     if @feedback.save
@@ -27,15 +28,15 @@ class FeedbacksController < ApplicationController
 
   def update
     @feedback = Feedback.find(params[:id])
-    if @feedback.update(params.require(:feedback).permit(:name, :email, :message))
+    if @feedback.update(params.require(:feedback).permit(:name, :email, :message, :remarks))
       flash[:notice] = 'feedback updated successfully'
       redirect_to feedbacks_path
     else
       flash.now[:alert] = 'update failed'
       render :edit, status: :unprocessable_entity
     end
-
   end
+
 
   def destroy
     @feedback = Feedback.find(params[:id])
@@ -43,8 +44,9 @@ class FeedbacksController < ApplicationController
     flash[:notice] = 'Feedback deleted'
     redirect_to feedbacks_path
   end
+
   def feedback_params
-    params.require(:feedback).permit(:name, :email, :message)
+    params.require(:feedback).permit(:name, :email, :message, :remarks)
   end
 end
 

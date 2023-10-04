@@ -1,15 +1,28 @@
 <h1>Show Post ID: <%= @post.id %></h1>
+<table class="table-bordered">
+<thead>
+  <th>TITLE</th>
+  <th>CONTENT</th>
+  <th>CATEGORY</th>
+  <th>STATUS</th>
+  <th>CREATED AT</th>
+  <th>UPDATED AT</th>
+</thead>
 
 
-<ul>
-  <li><%= @post.title %></li>
-  <li><%= @post.content %></li>
-  <li><%= @post.created_at %></li>
-  <li><%= @post.updated_at %></li>
-</ul>
+<tr>
+  <td><%= @post.title %></td>
+  <td><%= @post.content %></td>
+  <td><%= @post.categories %></td>
+  <td><%= @post.published %></td>
+  <td><%= @post.created_at %></td>
+  <td><%= @post.updated_at %></td>
+</tr>
+</table>
 
-    <%= link_to 'Edit', edit_post_path, class: 'btn btn-dark' %>
-    <%= link_to 'Back', posts_path, class: 'btn btn-dark' %>
+<%= link_to 'Edit', edit_post_path, class: 'btn btn-dark' %>
+<%= link_to 'Back', posts_path, class: 'btn btn-dark' %>
+<%= link_to 'New Comment', new_post_comment_path(@post), class: 'btn btn-dark' %>
 
 
 

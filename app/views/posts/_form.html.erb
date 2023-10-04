@@ -1,8 +1,8 @@
 <div class="container">
-  <% if @post.errors.any? %>
+  <% if post.errors.any? %>
     <div class="alert alert-warning" role="alert">
       <ul>
-        <% @post.errors.each do |error| %>
+        <% post.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -11,7 +11,7 @@
 </div>
 
 <div class="container">
-  <%= form_with model: @post, url: url, method: method, data: { turbo: false } do |form| %>
+  <%= form_with model: post, url: url, method: method, data: { turbo: false } do |form| %>
     <div class="mb-3">
       <%= form.label :title, class: 'form-label' %>
       <%= form.text_field :title, class: 'form-control' %>
@@ -20,6 +20,11 @@
       <%= form.label :content, class: 'form-label' %>
       <%= form.text_area :content, class: 'form-control' %>
     </div>
+    <div class="field">
+      <%= form.label :published%>
+      <%= form.check_box :published%>
+    </div>
     <%= form.submit class: 'btn btn-primary' %>
+    <%= link_to 'Back', posts_path, class: 'btn btn-outline-dark' %>
   <% end %>
 </div>

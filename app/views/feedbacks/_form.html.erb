@@ -24,6 +24,14 @@
       <%= form.label :message, class: 'form-label' %>
       <%= form.text_area :message, class: 'form-control' %>
     </div>
+    <div class="field">
+      <strong>Remark:</strong>
+      <% Feedback.remarks.keys.each do |remark| %>
+        <%= form.radio_button :remarks, remark %>
+        <%= remark.humanize %>
+        <% end %>
+    </div>
     <%= form.submit class: 'btn btn-primary' %>
+    <%= link_to 'Back', feedbacks_path, class: 'btn btn-outline-dark' %>
   <% end %>
 </div>

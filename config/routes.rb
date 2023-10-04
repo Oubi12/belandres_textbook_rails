@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
-  get 'feedbacks/index'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
   # root "articles#index"
   root 'welcome#index'
   get :home, to:'welcome#home'
   get :about, to: 'welcome#about'
-  get :contact, to: 'feedbacks#index'
+  get :contacts, to: 'welcome#contacts'
   resources :feedbacks
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
+  resources :categories, except: :show
+
 end

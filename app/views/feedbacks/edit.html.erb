@@ -1,3 +1,2 @@
 <h1>Contact</h1>
-<%= render partial: 'feedbacks/form',
-           locals: { url: feedback_path(@feedback), method: :patch } %>
+<%= render partial: 'feedbacks/form', locals: { url: feedback_path(@feedback), method: :patch, feedback: @feedback } %>

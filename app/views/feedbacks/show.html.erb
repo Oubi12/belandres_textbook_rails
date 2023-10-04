@@ -1,10 +1,23 @@
 <h1>Show ID: <%= @feedback.id %></h1>
+<table class="table-bordered">
+  <thead>
+  <th>NAME</th>
+  <th>EMAIL</th>
+  <th>MESSAGE</th>
+  <th>REMARKS</th>
+  <th>CREATED</th>
+  <th>UPDATED</th>
+  </thead>
 
+<tr>
+  <td><%= @feedback.name %></td>
+  <td><%= @feedback.email %></td>
+  <td><%= @feedback.message %></td>
+  <td><%= @feedback.remarks %></td>
+  <td><%= @feedback.created_at.strftime("%m/%d/%Y  %I:%M%p")%></td>
+  <td><%= @feedback.updated_at.strftime("%m/%d/%Y  %I:%M%p")%></td>
+</tr>
 
-<ul>
-  <li><%= @feedback.name %></li>
-  <li><%= @feedback.email %></li>
-  <li><%= @feedback.message %></li>
-  <li><%= @feedback.created_at %></li>
-  <li><%= @feedback.updated_at %></li>
-</ul>
+</table>
+
+<%= link_to 'Back', feedbacks_path, class: 'btn btn-outline-dark' %>

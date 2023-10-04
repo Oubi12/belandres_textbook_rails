@@ -1,12 +1,21 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+
   def index
-    @posts = Post.all
-    # @posts = @posts.where('title LIKE ?', "%#{params[:title]}%")
-    # if params[:start_date].present? && params[:end_date].present?
-    #   @posts = @posts.where(created_at: params[:start_date]..params[:end_date])
-    # end
-    # @posts = @posts.order(created_at: :desc)
+    @posts = Post.includes(:categories).all
+    if params[:title].present?
+      @posts = @posts.where('title LIKE ?', "%#{params[:title]}%")
+    end
+
+    if params[:start_date].present? && params[:end_date].present?
+      @posts = @posts.where(created_at: params[:start_date]..params[:end_date])
+    end
+
+    if params[:published].present?
+      @posts = @posts.where(published: true)
+    end
+
+    @posts = @posts.order(created_at: :desc)
   end
 
   def new
@@ -14,7 +23,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new.(post_params)
+    @post = Post.new(post_params)
     if @post.save
       flash[:notice] = 'Post created successfully'
       redirect_to posts_path
@@ -23,15 +32,15 @@ class PostsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
   def show
-     @post = Post.find(params[:id])
   end
+
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    # @post = Post.update(params[:id])
+
     if @post.update(post_params)
       flash[:notice] = 'Post update successfully'
       redirect_to posts_path
@@ -55,7 +64,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:name, :email,)
+    params.require(:post).permit(:title, :content, :published, category_ids: [])
   end
 end
 
