@@ -21,8 +21,11 @@
       <%= form.text_area :content, class: 'form-control' %>
     </div>
     <div class="field">
-      <%= form.label :published%>
-      <%= form.check_box :published%>
+      <%= form.label :published %>
+      <%= form.check_box :published %>
+    </div>
+    <div>
+      <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
     </div>
     <%= form.submit class: 'btn btn-primary' %>
     <%= link_to 'Back', posts_path, class: 'btn btn-outline-dark' %>

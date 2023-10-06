@@ -23,6 +23,7 @@
           top: 0;
       }
 
+
       li {
           float: left;
       }
@@ -45,9 +46,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <%= link_to "KODACAMP", root_path, class: "navbar-brand" %>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -57,15 +60,26 @@
           <%= link_to 'Contact', contacts_path, class: "nav-link #{'active' if controller_name == 'welcome' && action_name == 'contacts'}", 'aria-current': 'page' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'About', about_path, class: "nav-link #{'active' if controller_name == 'welcome' && action_name == 'about' }", 'aria-current': 'page' %>
-        </li>
-        <li class="nav-item">
           <%= link_to 'Posts', posts_path, class: "nav-link #{'active' if controller_name == 'posts' && action_name == 'index'}", 'aria-current': 'page' %>
         </li>
+        <li class="nav-item">
+          <%= link_to 'Category', categorys_path, class: "nav-link #{'active' if controller_name == 'welcome' && action_name == 'categorys'}", 'aria-current': 'page' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'About', about_path, class: "nav-link #{'active' if controller_name == 'welcome' && action_name == 'about' }", 'aria-current': 'page' %>
+        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'Sign out', destroy_user_session_path, style: "color: red;", data: { 'turbo-method': :delete, turbo_confirm: 'Are you sure you want to logout' } %>
+          </li>
+        <% else %>
+          <%= link_to 'Sign in', new_user_session_path, class: 'nav-link', style: "color: green;" %>
+        <% end %>
       </ul>
     </div>
   </div>
 </nav>
+
 <div class="container">
   <% if flash[:notice] %>
     <div class="alert alert-success" role="alert">
@@ -78,6 +92,9 @@
     </div>
   <% end %>
 </div>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 <%= yield %>
 </body>
 </html>

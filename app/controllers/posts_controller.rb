@@ -14,6 +14,10 @@ class PostsController < ApplicationController
     if params[:published].present?
       @posts = @posts.where(published: true)
     end
+    if params[:category].present?
+      @posts = @posts.where(category: params[:name])
+    end
+
 
     @posts = @posts.order(created_at: :desc)
   end
@@ -24,6 +28,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user = current_user
     if @post.save
       flash[:notice] = 'Post created successfully'
       redirect_to posts_path
@@ -65,6 +70,13 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :content, :published, category_ids: [])
+  end
+
+  def validate_post_owner
+    return if @post.user == current_user
+
+    flash[:notice] = 'This post does not belongs to you'
+    redirect_to posts_path
   end
 end
 

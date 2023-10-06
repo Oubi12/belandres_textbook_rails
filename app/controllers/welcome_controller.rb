@@ -7,5 +7,7 @@ class WelcomeController < ApplicationController
 
   def contacts; end
 
+  def categorys; end
+
 end
 
