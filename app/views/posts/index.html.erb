@@ -23,8 +23,8 @@
         <%= form.check_box :published, class: 'form-check-input ms-2' %>
       </div>
       <div class="col-md-2">
-        <%= form.label :categories, class: 'form-check-label d-block' %>
-        <%= form.check_box :categories, class: 'form-check-input ms-2' %>
+        <%= form.label :category_name, "Categories", class: 'form-label' %>
+        <%= form.select :category_name, Category.all.map{ |c| [c.name, c.id] }, {}, { multiple: true, class: 'form-control' } %>
       </div>
       <div class="col-md-1 d-flex align-items-end">
         <%= form.submit 'Search', class: 'btn btn-sm btn-primary' %>
@@ -40,8 +40,10 @@
   <thead>
   <tr>
     <td>AUTHOR</td>
+    <td>COMMENTS COUNT</td>
     <th>TITLE</th>
     <th>CONTENT</th>
+    <td>IMAGE</td>
     <th>CATEGORY</th>
     <th>STATUS</th>
     <th>CREATED AT</th>
@@ -53,8 +55,10 @@
   <% @posts.each do |post| %>
     <tr>
       <td><%= post.user&.email %></td>
+      <td><%= post.comments_count %></td>
       <td><%= post.title %></td>
       <td><%= post.content %></td>
+      <td><%= image_tag post.image.url if post.image.present? %></td>
       <td><%= post.categories.pluck(:name).join(',') %></td>
       <td><%= post.published == "1" ? true : false %></td>
       <td><%= post.created_at.strftime("On %m/%d/%Y at %I:%M%p") %></td>
@@ -65,7 +69,7 @@
           <%= link_to 'New Comment', new_post_comment_path(post), class: 'btn btn-outline-dark' %>
           <%= link_to 'Comments', post_comments_path(post), class: 'btn btn-outline-dark' %>
           <% if user_signed_in? && post.user == current_user %>
-            <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-sm btn btn-outline-dark' %>
+            <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-sm btn btn-outline-primary' %>
             <%= button_to 'Delete', post_path(post), method: :delete, class: 'btn btn-sm btn btn-outline-danger' %>
           <% end %>
         </div>
@@ -74,3 +78,4 @@
   <% end %>
   </tbody>
 </table>
+<%= paginate @posts %>
