@@ -27,6 +27,9 @@
     <div>
       <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
     </div>
+    <div>
+        <%= form.file_field :image %>
+    </div>
     <%= form.submit class: 'btn btn-primary' %>
     <%= link_to 'Back', posts_path, class: 'btn btn-outline-dark' %>
   <% end %>
