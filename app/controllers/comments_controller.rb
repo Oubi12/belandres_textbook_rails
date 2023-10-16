@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:edit, :update, :destroy]
 
   def index
-    @comments = @post.comments.order(created_at: :dsc)
+    @comments = @post.comments.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def new

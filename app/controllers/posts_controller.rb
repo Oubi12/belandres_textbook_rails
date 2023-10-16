@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.includes(:categories).all
+    @posts = Post.includes(:categories,:user).page(params[:page]).per(5)
     if params[:title].present?
       @posts = @posts.where('title LIKE ?', "%#{params[:title]}%")
     end
@@ -14,10 +14,9 @@ class PostsController < ApplicationController
     if params[:published].present?
       @posts = @posts.where(published: true)
     end
-    if params[:category].present?
-      @posts = @posts.where(category: params[:name])
+    if params[:category_name].present?
+      @posts = @posts.joins(:categories).where(categories: { id: params[:category_name] })
     end
-
 
     @posts = @posts.order(created_at: :desc)
   end
@@ -69,7 +68,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :published, category_ids: [])
+    params.require(:post).permit(:title, :content, :published,:image, category_ids: [])
   end
 
   def validate_post_owner

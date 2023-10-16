@@ -1,6 +1,6 @@
 class FeedbacksController < ApplicationController
   def index
-    @feedbacks = Feedback.all
+    @feedbacks = Feedback.page(params[:page]).per(5)
   end
 
   def new
