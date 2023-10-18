@@ -32,4 +32,7 @@ Rails.application.routes.draw do
       resources :barangays, only: %i[index show], defaults: { format: :json }
     end
   end
+  resources :cat_facts, only: [:index] do
+    post 'fetch_catfact', on: :collection
+  end
 end
