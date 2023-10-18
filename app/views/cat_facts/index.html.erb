@@ -1,0 +1,24 @@
+<%= button_to 'Generate New Cat Fact', fetch_catfact_cat_facts_path, method: :post %>
+<% if user_signed_in?%>
+  <%= link_to 'Show Owned Catfacts', cat_facts_path(owned: true), class: 'btn btn-dark'%>
+<% end %>
+<%= link_to 'Show All Catfacts', cat_facts_path(owned: false), class: 'btn btn-dark'%>
+
+<table class="table table-hover table-bordered table-sm">
+  <thead>
+    <tr>
+      <td> Author</td>
+      <td> Descriptions</td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @catfacts.each do |catfact| %>
+      <tr>
+        <td><%= catfact.user&.email %></td>
+        <td><%= catfact.fact %></td>
+      </tr>
+  </tbody>
+  <% end %>
+</table>
+
