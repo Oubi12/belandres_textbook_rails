@@ -1,0 +1,13 @@
+
+<h2>Notes</h2>
+<ul>
+  <% @notes.each do |note| %>
+    <li>
+      <%= note.content %>(<%= note.created_at %>)
+      <%= link_to 'Edit', edit_feedback_note_path(@feedback, note) %>
+      <%= button_to 'Delete', feedback_note_path(@feedback, note), method: :delete %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Feedback List', feedbacks_path %>

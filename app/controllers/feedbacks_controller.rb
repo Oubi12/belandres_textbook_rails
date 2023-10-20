@@ -9,6 +9,7 @@ class FeedbacksController < ApplicationController
 
   def create
     @feedback = Feedback.new(feedback_params)
+    @feedback.user = current_user
     if @feedback.save
       flash[:notice] = 'created successfully'
       redirect_to feedbacks_path
@@ -41,12 +42,12 @@ class FeedbacksController < ApplicationController
   def destroy
     @feedback = Feedback.find(params[:id])
     @feedback.destroy
-    flash[:notice] = 'Feedback deleted'
+    flash[:alert] = 'Feedback deleted'
     redirect_to feedbacks_path
   end
 
   def feedback_params
-    params.require(:feedback).permit(:name, :email, :message, :remarks)
+    params.require(:feedback).permit(:name, :message, :remarks)
   end
 end
 
