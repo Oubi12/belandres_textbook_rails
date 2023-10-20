@@ -15,7 +15,7 @@
     <tbody>
     <tr>
       <td><%= feedback.name %></td>
-      <td><%= feedback.email %></td>
+      <td><%= feedback.user&.email %></td>
       <td><%= feedback.message %></td>
       <td><%= feedback.remarks %></td>
       <td><%= feedback.created_at.strftime("%m/%d/%Y at %I:%M%p") %></td>
@@ -24,6 +24,8 @@
         <div class="btn-group-vertical" role="group" aria-label="Post Actions">
         <%= link_to 'Edit', edit_feedback_path(feedback), class: 'btn btn-outline-success' %>
         <%= link_to 'Show', feedback_path(feedback), class: 'btn btn-outline-primary' %>
+          <%= link_to 'Notes', feedback_notes_path(feedback) %>
+          <%= link_to 'New Note', new_feedback_note_path(feedback) %>
         </div>
         <%= button_to 'Delete', feedback_path(feedback), method: :delete, class: 'btn btn-outline-danger' %></td>
     </tr>
