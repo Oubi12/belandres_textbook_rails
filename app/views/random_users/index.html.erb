@@ -1,0 +1,37 @@
+<%= button_to 'Generate random user', fetch_random_user_random_users_path, method: :post %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-4">
+      <div class="card">
+        <img src="<%= @random_user['picture']['large'] %>" class="card-img-top" alt="User Image">
+        <div class="card-body">
+          <h5 class="card-title font-monospace">
+            <%= @random_user['name']['title'] %> <%= @random_user['name']['first'] %> <%= @random_user['name']['last'] %>
+          </h5>
+          <p class="card-text">
+            Gender: <%= @random_user['gender'] %><br>
+            Date of Birth: <%= @random_user['dob']['date'] %> (Age: <%= @random_user['dob']['age'] %>)<br>
+            Nationality: <%= @random_user['nat'] %>
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <h4 class="font-monospace">Location</h4>
+            Street: <%= @random_user['location']['street']['number'] %> <%= @random_user['location']['street']['name'] %><br>
+            City: <%= @random_user['location']['city'] %><br>
+            State: <%= @random_user['location']['state'] %><br>
+            Country: <%= @random_user['location']['country'] %><br>
+            Postal Code: <%= @random_user['location']['postcode'] %><br>
+            Timezone: <%= @random_user['location']['timezone']['description'] %>
+          </li>
+          <li class="list-group-item">
+            <h4 class="font-monospace">Contact Information</h4>
+            Email: <%= @random_user['email'] %><br>
+            Phone: <%= @random_user['phone'] %><br>
+            Cell: <%= @random_user['cell'] %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

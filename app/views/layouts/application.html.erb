@@ -69,10 +69,13 @@
           <%= link_to 'About', about_path, class: "nav-link #{'active' if controller_name == 'welcome' && action_name == 'about' }", 'aria-current': 'page' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Cat', cat_facts_path, class: "nav-link #{'active' if controller_name == 'catfacts' && action_name == 'catfacts' }", 'aria-current': 'page' %>
+          <%= link_to 'Cat', cat_facts_path, class: "nav-link #{'active' if controller_name == 'cat_facts' && action_name == 'catfacts' }", 'aria-current': 'page' %>
         </li>
         <li class="nav-item">
           <%= link_to 'NewsAPI', api_news_index_path, class: "nav-link #{'active' if controller_name == 'api/news' && action_name == 'index' }", 'aria-current': 'page' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'RandomUser', random_users_path, class: "nav-link #{'active' if controller_name == 'random_users' && action_name == 'index' }", 'aria-current': 'page' %>
         </li>
         <% if user_signed_in? %>
           <li class="nav-item">

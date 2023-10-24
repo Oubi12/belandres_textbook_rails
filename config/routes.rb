@@ -39,4 +39,8 @@ Rails.application.routes.draw do
   resources :cat_facts, only: [:index] do
     post 'fetch_catfact', on: :collection
   end
+
+  resources :random_users, only: [:index] do
+    post 'fetch_random_user', on: :collection
+  end
 end
