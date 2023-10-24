@@ -41,14 +41,15 @@
   <tr>
     <td>AUTHOR</td>
     <td>COMMENTS COUNT</td>
-    <th>TITLE</th>
-    <th>CONTENT</th>
+    <td>TITLE</td>
+    <td>CONTENT</td>
+    <td>ADDRESS</td>
     <td>IMAGE</td>
-    <th>CATEGORY</th>
-    <th>STATUS</th>
-    <th>CREATED AT</th>
-    <th>UPDATED AT</th>
-    <th>ACTIONS</th>
+    <td>CATEGORY</td>
+    <td>STATUS</td>
+    <td>CREATED AT</td>
+    <td>UPDATED AT</td>
+    <td>ACTIONS</td>
   </tr>
   </thead>
   <tbody>
@@ -61,6 +62,7 @@
       <td><%= post.comments_count %></td>
       <td><%= post.title %></td>
       <td><%= post.content %></td>
+      <td><%= "#{post.region&.name} #{post.province&.name} #{post.address}" %></td>
       <td><%= image_tag post.image.url if post.image.present? %></td>
       <td><%= post.categories.pluck(:name).join(',') %></td>
       <td><%= post.published == "1" ? true : false %></td>
