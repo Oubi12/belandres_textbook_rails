@@ -12,7 +12,8 @@
 
 <div class="container">
   <%#= form_with model: post, url: url, method: method, data: { turbo: false } do |form| %>
-    <%= form_with model: post, data: { controller: :location } do |form| %>
+    <%#= form_with model: post, data: { controller: :location } do |form| %>
+  <%= form_with model: post, data: { controller: 'location select2' } do |form| %>
     <div class="mb-3">
       <%= form.label :title, class: 'form-label' %>
       <%= form.text_field :title, class: 'form-control' %>
@@ -45,7 +46,7 @@
       <%= form.label :address_region_id %>
       <%= form.collection_select :address_region_id,
                                  Address::Region.all, :id, :name,
-                                 { prompt: 'Please select region' },
+                                 { prompt: 'Please select region' }, class: 'select2',
                                  data: { location_target: 'selectedRegionId', action: 'change->location#fetchProvinces' } %>
     </div>
 
@@ -53,7 +54,7 @@
       <%= form.label :address_provinces_id %>
       <%= form.collection_select :address_province_id,
                                  [], nil, nil,
-                                 { prompt: 'Please select province' },
+                                 { prompt: 'Please select province' }, class: 'select2',
                                  data: { location_target: 'selectProvinceId' } %>
     </div>
 
