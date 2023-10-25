@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_20_081147) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_24_081950) do
   create_table "address_barangays", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "city_id"
     t.string "code"
@@ -83,6 +83,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_20_081147) do
     t.bigint "feedback_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["feedback_id"], name: "index_notes_on_feedback_id"
   end
 
@@ -105,6 +106,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_20_081147) do
     t.bigint "user_id"
     t.string "image"
     t.integer "comments_count"
+    t.string "address"
+    t.bigint "address_region_id"
+    t.bigint "address_province_id"
+    t.bigint "address_city_id"
+    t.bigint "address_barangay_id"
+    t.index ["address_barangay_id"], name: "index_posts_on_address_barangay_id"
+    t.index ["address_city_id"], name: "index_posts_on_address_city_id"
+    t.index ["address_province_id"], name: "index_posts_on_address_province_id"
+    t.index ["address_region_id"], name: "index_posts_on_address_region_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

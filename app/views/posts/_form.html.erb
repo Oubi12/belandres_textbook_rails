@@ -55,7 +55,23 @@
       <%= form.collection_select :address_province_id,
                                  [], nil, nil,
                                  { prompt: 'Please select province' }, class: 'select2',
-                                 data: { location_target: 'selectProvinceId' } %>
+                                 data: { location_target: 'selectProvinceId', action: 'change->location#fetchCities' } %>
+    </div>
+
+    <div>
+      <%= form.label :address_city_id %>
+      <%= form.collection_select :address_city_id,
+                                 [], nil, nil,
+                                 { prompt: 'Please select city' }, class: 'select2',
+                                 data: { location_target: 'selectCityId', action: 'change->location#fetchBarangays'  } %>
+    </div>
+
+    <div>
+      <%= form.label :address_barangay_id %>
+      <%= form.collection_select :address_barangay_id,
+                                 [], nil, nil,
+                                 { prompt: 'Please select barangay' }, class: 'select2',
+                                 data: { location_target: 'selectBarangayId' } %>
     </div>
 
     <%= form.submit class: 'btn btn-primary' %>
