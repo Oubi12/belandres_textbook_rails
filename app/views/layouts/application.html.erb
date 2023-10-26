@@ -77,6 +77,17 @@
         <li class="nav-item">
           <%= link_to 'RandomUser', random_users_path, class: "nav-link #{'active' if controller_name == 'random_users' && action_name == 'index' }", 'aria-current': 'page' %>
         </li>
+        <li class="dropdown-item d-flex justify-content-end">
+          <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+              Language
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu2">
+              <li><%= link_to 'EN', params.permit!.merge(locale: 'en'), class:"dropdown-item text-end" %></li>
+              <li><%= link_to 'zh-CN', params.permit!.merge(locale: 'zh-CN'), class:"dropdown-item text-end" %></li>
+            </ul>
+          </div>
+        </li>
         <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to 'Sign out', destroy_user_session_path, style: "color: red;", data: { 'turbo-method': :delete, turbo_confirm: 'Are you sure you want to logout' } %>
@@ -101,9 +112,10 @@
     </div>
   <% end %>
 </div>
+<%#= link_to 'EN', params.permit!.merge(locale: 'en') %>
+<%#= link_to 'zh-CN', params.permit!.merge(locale: 'zh-CN') %>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+
 <%= yield %>
 </body>
 </html>
